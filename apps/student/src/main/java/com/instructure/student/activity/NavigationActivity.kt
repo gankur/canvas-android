@@ -27,6 +27,7 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -43,6 +44,7 @@ import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -81,6 +83,12 @@ import com.instructure.student.tasks.StudentLogoutTask
 import com.instructure.student.util.Analytics
 import com.instructure.student.util.AppShortcutManager
 import com.instructure.student.util.StudentPrefs
+import io.flutter.app.FlutterApplication
+import io.flutter.embedding.android.FlutterActivity
+////import io.flutter.app.FlutterActivity
+//import io.flutter.facade.Flutter
+//import io.flutter.plugins.GeneratedPluginRegistrant
+import io.flutter.view.FlutterMain
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.loading_canvas_view.*
 import kotlinx.android.synthetic.main.navigation_drawer.*
@@ -140,7 +148,19 @@ class NavigationActivity : BaseRouterActivity(), Navigation, MasqueradingDialog.
                 R.id.navigationDrawerItem_stopMasquerading -> {
                     MasqueradeHelper.stopMasquerading(NavigationActivity.startActivityClass)
                 }
-                R.id.navigationDrawerSettings -> startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                R.id.navigationDrawerSettings -> {
+                    //startActivity(Intent(applicationContext, SettingsActivity::class.java))
+
+                    //var fa = FlutterApplication()
+                    //val flutterSettings = FlutterMain.Settings()
+                    FlutterMain.startInitialization(applicationContext/*,flutterSettings*/)
+                    //Thread.sleep(5000)
+                    //FlutterMain.ensureInitializationComplete(applicationContext, arrayOf<String>()  )
+                    val customFlutter = FlutterActivity.createBuilder()
+                            .initialRoute("options")
+                            .build(applicationContext)
+                    startActivity(customFlutter)
+                }
             }
         }
     }

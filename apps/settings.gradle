@@ -23,6 +23,13 @@ include ':pandares'
 include ':panda_annotations'
 include ':panda_processor'
 
+/* Flutter inclusion */
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir.parentFile,
+  'apps/flutter_code/.android/include_flutter.groovy'
+))
+
 project(':androidcalendar').projectDir = new File(rootProject.projectDir, '/../libs/androidcalendar')
 project(':annotations').projectDir = new File(rootProject.projectDir, '/../libs/annotations')
 project(':blueprint').projectDir = new File(rootProject.projectDir, '/../libs/blueprint')
