@@ -35,10 +35,16 @@ void main() {
       await driver.waitFor(find.text('Yay!!'));
     });
 
+    test('Always fails', () async {
+      await driver.waitFor(find.text('This text is not here'));
+    });
+
     test('Shows snackbar after negative input', () async {
       await driver.waitFor(quitBtnFinder, timeout: Duration(milliseconds: 1500));
       await driver.tap(quitBtnFinder);
       await driver.waitFor(find.text('Awww!!'));
     });
+
+
   });
 }
