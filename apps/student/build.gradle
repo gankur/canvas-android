@@ -123,8 +123,8 @@ android {
         release {
             signingConfig signingConfigs.release
             debuggable false
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false // FIXME - Configure proguard
+            shrinkResources false // FIXME
             buildConfigField 'boolean', 'IS_DEBUG', 'false'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
@@ -220,6 +220,9 @@ dependencies {
     implementation project(path: ':annotations')
     implementation project(path: ':rceditor')
     implementation project(path: ':interactions')
+
+    /* Flutter embed */
+    implementation project(path: ':flutter-student-embed')
 
     /* Android Test Dependencies */
     androidTestImplementation project(path: ':canvas_espresso')

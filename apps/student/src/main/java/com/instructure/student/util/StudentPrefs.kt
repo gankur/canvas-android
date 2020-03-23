@@ -29,31 +29,9 @@ object StudentPrefs : PrefManager("candroidSP") {
     var hideCourseColorOverlay by BooleanPref(false)
 
     @JvmStatic
-    var weekStartsOnMonday by BooleanPref(false, "calendarStartDayPrefs")
-
-    @JvmStatic
-    var calendarYearPref by IntPref(-1)
-
-    @JvmStatic
-    var calendarMonthPref by IntPref(-1)
-
-    @JvmStatic
-    var calendarDayPref by IntPref(-1)
-
-    @JvmStatic
-    var calendarPrefFlag by BooleanPref()
-
-    @JvmStatic
-    var calendarViewType by IntPref()
-
-    @JvmStatic
-    var calendarFilters by StringSetPref(keyName = "calFilterPrefsKey")
-
-    @JvmStatic
     var staleFolderIds by SetPref(Long::class)
 
     override fun keepBaseProps() = listOf(
-            ::showGradesOnCard,
-            ::weekStartsOnMonday
+            ::showGradesOnCard
     )
 }
